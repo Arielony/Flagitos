@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcomeactivity_gradient">
+
+    <ImageView
+        android:id="@+id/welcomeactivity_img_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        app:srcCompat="@mipmap/logo_flame"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/welcomeactivity_txt_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:textSize="30sp"
+        android:text="@string/app_name"
+        android:textColor="#000"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/welcomeactivity_txt_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargando datos innecesarios"
+            android:textSize="20sp"/>
+
+        <ProgressBar
+            android:id="@+id/welcomeactivity_prog_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
