@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <SearchView
+            android:id="@+id/profilefragment_tabflagitos_searchCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp">
+
+        </SearchView>
+
+        <ListView
+            android:id="@+id/profilefragment_tabflagitos_listcategoria"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/profilefragment_tabflagitos_txtCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/profile_tabFlagitos_hintCategoria" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/profilefragment_tabflagitos_btnGracias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gracias!" />
+
+            <Button
+                android:id="@+id/profilefragment_btn_btnDevolver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Devolver Favor" />
+
+
+    </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

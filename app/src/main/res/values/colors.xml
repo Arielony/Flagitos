@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#475bdc</color>
     <color name="colorAccent">#FF4081</color>
 
+
+    <color name="color_TRANSPARENT">#80000000</color>
+    <color name="color_BLACK">#000</color>
+    <color name="color_RED">#fff</color>
+    <color name="color_WHITE">#fff</color>
+    <color name="color_BLUE">#fff</color>
+
+
+    <!-- Flagare Colors -->
+    <color name="FLAG_ORANGE">#FF9800</color>
 
     <!-- ProgressBar Colors -->
     <color name="progressbar_start">#ffff00</color>

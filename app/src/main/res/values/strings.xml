@@ -3,4 +3,33 @@
 
 
     <string name="action_settings">Settings</string>
+
+
+    
+    <!-- Profile Fragment -->
+    <string name="profile_tabCompromiso_hintCompromiso">Escribe tu compromiso</string>
+    <string name="profile_tabCompromiso_hintFecha">Fecha del compromiso</string>
+    <string name="profile_tabFlagitos_hintCategoria">Deja tu propia categoria</string>
+
+    <!-- Categories -->
+    <array name="ArrayCategorias">
+        <item>El más paleteado</item>
+        <item>El aplicado del curso</item>
+        <item>Ayuda laboral</item>
+        <item>El Maquina</item>
+        <item>100% Real</item>
+        <item>El saca vuelta</item>
+        <item>Power Ranger</item>
+    </array>
+    
+    
+    
+    <!-- OTHERS -->
+    <string name="URL_MARCIANITO">http://i0.kym-cdn.com/entries/icons/original/000/021/273/200w.gif</string>
+    <string name="title_activity_drawer">Drawer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_main">MainActivity</string>
+
 </resources>

@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import cl.flagare.flagitos.R;
+import cl.flagare.flagitos.utils.viewAdapters.StatusBar;
 
 /**
  * Created by arielsalas on 20-10-17.
@@ -30,12 +31,14 @@ public class WelcomeActivity extends AppCompatActivity {
         // Set Layout
         setContentView(R.layout.welcomeactivity_layout);
 
+        // Change StatusBar Color
+        StatusBar.CambiarStatusBar(this, R.color.color_BLACK);
+
         // User Interface
         imgLogo = (ImageView) findViewById(R.id.welcomeactivity_img_logo);
         txtTitulo = (TextView) findViewById(R.id.welcomeactivity_txt_titulo);
         txtProgress = (TextView) findViewById(R.id.welcomeactivity_txt_progress);
         progressBar = (ProgressBar) findViewById(R.id.welcomeactivity_prog_bar);
-
 
         // Mostramos animación de bienvenida
         bienvenido();
@@ -49,7 +52,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 
-                Intent i =  new Intent(getApplicationContext(), Profile.class);
+                Intent i =  new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
                 finish();
             }

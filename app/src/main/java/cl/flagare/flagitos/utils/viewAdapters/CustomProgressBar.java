@@ -1,4 +1,4 @@
-package cl.flagare.flagitos.utils;
+package cl.flagare.flagitos.utils.viewAdapters;
 
 /**
  * Created by arielsalas on 20-10-17.
