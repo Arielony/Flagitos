@@ -21,7 +21,7 @@ import cl.flagare.flagitos.utils.viewAdapters.StatusBar;
  * Created by arielsalas on 22-10-17.
  */
 
-public class ProfileFragment extends Fragment implements View.OnClickListener, TabLayout.OnTabSelectedListener {
+public class ProfileFragment extends Fragment implements View.OnClickListener, TabLayout.OnTabSelectedListener, MediaPlayer.OnCompletionListener {
 
     // Management Components
     private TabLayout tabLayout;
@@ -90,8 +90,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
                         .into(imgProfile);
 
                 if(mPlayer == null) {
+
                     mPlayer = MediaPlayer.create(getContext(), R.raw.nunca_me_faltes);
                     mPlayer.start();
+                } else {
+
+                    if(mPlayer.isPlaying()) {
+                        mPlayer.pause();
+                    } else {
+                        mPlayer.start();
+                    }
+
                 }
 
                 break;
@@ -176,5 +185,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
             mPlayer.stop();
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mediaPlayer) {
+        if(mediaPlayer != null) {
+            mediaPlayer.start();
+        }
     }
 }
