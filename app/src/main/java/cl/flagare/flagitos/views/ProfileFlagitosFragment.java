@@ -2,7 +2,9 @@ package cl.flagare.flagitos.views;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.MotionEvent;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import cl.flagare.flagitos.R;
@@ -20,7 +21,10 @@ import cl.flagare.flagitos.R;
  * Created by arielsalas on 22-10-17.
  */
 
-public class ProfileFlagitosFragment extends Fragment implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener {
+public class ProfileFlagitosFragment extends Fragment implements View.OnClickListener,
+        SearchView.OnQueryTextListener,
+        AdapterView.OnItemClickListener,
+        View.OnTouchListener {
 
 
     // UI Components
@@ -35,6 +39,7 @@ public class ProfileFlagitosFragment extends Fragment implements SearchView.OnQu
     private String[] arrayCategories;
 
 
+
     public ProfileFlagitosFragment() {
         // Required empty public constructor
     }
@@ -43,7 +48,7 @@ public class ProfileFlagitosFragment extends Fragment implements SearchView.OnQu
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
+        // Inflate the view for this Fragment
         View root = inflater.inflate(R.layout.profilefragment_tab_flagitos, null);
 
 
@@ -64,6 +69,11 @@ public class ProfileFlagitosFragment extends Fragment implements SearchView.OnQu
         list.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, arrayCategories));
         list.setTextFilterEnabled(true);
         list.setOnItemClickListener(this);
+        list.setOnTouchListener(this);
+
+        // Btn Config
+        btnDevolver.setOnClickListener(this);
+        btnGracias.setOnClickListener(this);
 
         return root;
     }
@@ -101,5 +111,30 @@ public class ProfileFlagitosFragment extends Fragment implements SearchView.OnQu
         String seleccion = (String) list.getItemAtPosition(position);
         txtCategoria.setText(seleccion);
 
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+
+        // Disallow the touch request for parent scroll on touch of
+        // child view
+        view.getParent().requestDisallowInterceptTouchEvent(true);
+        return false;
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.profilefragment_tabflagitos_btnGracias:
+                Toast.makeText(getContext(), "Haz dado Gracias!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.profilefragment_btn_btnDevolver:
+                Toast.makeText(getContext(), "Devuelve el favor...", Toast.LENGTH_SHORT).show();
+
+                break;
+            default:
+        }
     }
 }

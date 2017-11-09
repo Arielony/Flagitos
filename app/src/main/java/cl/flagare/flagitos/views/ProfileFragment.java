@@ -9,7 +9,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -39,7 +41,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
 
         // Getting view for work it
         View root = inflater.inflate(R.layout.profilefragment_layout, container, false);
@@ -100,16 +101,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
                     } else {
                         mPlayer.start();
                     }
-
                 }
-
                 break;
-
             default:
                 // Do Something
 
         }
     }
+
 
 
 

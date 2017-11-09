@@ -1,10 +1,14 @@
 package cl.flagare.flagitos.views;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +18,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 import cl.flagare.flagitos.R;
 import cl.flagare.flagitos.utils.viewAdapters.StatusBar;
@@ -29,11 +35,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FloatingActionButton fab;
     private DrawerLayout drawer;
 
+
     // Views
     private NavigationView navigationView;
 
     // Actions
     private ActionBarDrawerToggle toggle;
+
+    // Variables
+    private static final int RESULT_PICK_CONTACT = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+
+        goToFragment(HomeFragment.newInstance(null, null));
+        mostrarFAB(false);
     }
 
 
@@ -118,32 +131,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if(!(container instanceof ProfileFragment)) {
                     newFragment = new ProfileFragment();
+                    mostrarFAB(true);
                 }
 
+                break;
+            case R.id.nav_home:
+
+                if(!(container instanceof HomeFragment)) {
+                    newFragment = HomeFragment.newInstance(null, null);
+                    mostrarFAB(false);
+                }
                 break;
             case R.id.nav_aboutUs:
 
                 if(!(container instanceof AboutUsFragment)) {
                     newFragment = new AboutUsFragment();
+                    mostrarFAB(false);
                 }
 
                 break;
             default:
         }
 
-        if (newFragment != null) {
+        // Going to a Fragment
+        goToFragment(newFragment);
+        return true;
+    }
+
+    public void mostrarFAB(boolean ask) {
+
+        fab.setVisibility(ask ?  View.VISIBLE : View.INVISIBLE);
+
+    }
+
+
+    public void goToFragment(Fragment frag) {
+        if (frag != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.remove(getSupportFragmentManager().getFragments().get(0)); // Remove Old Fragment
-            ft.replace(R.id.mainactivity_fragment, newFragment);
+            ft.replace(R.id.mainactivity_fragment, frag);
             ft.commit();
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
+    }
 
     /* ONCLICKS  */
     @Override
@@ -151,12 +185,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (view.getId()) {
             case R.id.fab:
-                Snackbar.make(view, "Aqui deberia suceder algo", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent contactPickerIntent = new Intent(Intent.ACTION_PICK,
+                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+                startActivityForResult(contactPickerIntent, RESULT_PICK_CONTACT);
                 break;
             default:
-
         }
+    }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // check whether the result is ok
+        if (resultCode == RESULT_OK) {
+            // Check for the request code, we might be usign multiple startActivityForReslut
+            switch (requestCode) {
+                case RESULT_PICK_CONTACT:
+                    contactPicked(data);
+                    break;
+            }
+        } else {
+            Log.e("MainActivity", "Failed to pick contact");
+        }
+    }
+
+    private void contactPicked(Intent data) {
+        Cursor cursor = null;
+        try {
+            String phoneNo = null ;
+            String name = null;
+            // getData() method will have the Content Uri of the selected contact
+            Uri uri = data.getData();
+            //Query the content uri
+            cursor = getContentResolver().query(uri, null, null, null, null);
+            cursor.moveToFirst();
+            // column index of the phone number
+            int  phoneIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+            // column index of the contact name
+            int  nameIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+            phoneNo = cursor.getString(phoneIndex);
+            name = cursor.getString(nameIndex);
+            // Set the value to the textviews
+
+            Toast.makeText(this, "Nombre: " + name, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Telefono: " + phoneNo, Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

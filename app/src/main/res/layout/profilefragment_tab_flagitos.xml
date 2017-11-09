@@ -44,18 +44,27 @@
 
             </android.support.design.widget.TextInputLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
             <Button
                 android:id="@+id/profilefragment_tabflagitos_btnGracias"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Gracias!" />
 
             <Button
                 android:id="@+id/profilefragment_btn_btnDevolver"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Devolver Favor" />
 
+        </LinearLayout>
 
     </LinearLayout>
 

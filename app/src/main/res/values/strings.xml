@@ -5,7 +5,6 @@
     <string name="action_settings">Settings</string>
 
 
-    
     <!-- Profile Fragment -->
     <string name="profile_tabCompromiso_hintCompromiso">Escribe tu compromiso</string>
     <string name="profile_tabCompromiso_hintFecha">Fecha del compromiso</string>
@@ -21,9 +20,8 @@
         <item>El saca vuelta</item>
         <item>Power Ranger</item>
     </array>
-    
-    
-    
+
+
     <!-- OTHERS -->
     <string name="URL_MARCIANITO">http://i0.kym-cdn.com/entries/icons/original/000/021/273/200w.gif</string>
     <string name="title_activity_drawer">Drawer</string>
@@ -31,5 +29,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
